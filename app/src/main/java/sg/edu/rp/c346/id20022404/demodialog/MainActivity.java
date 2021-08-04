@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,13 +14,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.time.Month;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnDemo1, btnDemo2, btnDemo3, btnEx3, btnDemo4;
-    TextView tvDemo2, tvDemo3, tvEx3, tvDemo4;
+    Button btnDemo1, btnDemo2, btnDemo3, btnEx3, btnDemo4, btnDemo5;
+    TextView tvDemo2, tvDemo3, tvEx3, tvDemo4, tvDemo5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnDemo4 = findViewById(R.id.buttonDemo4);
         tvDemo4 = findViewById(R.id.textViewDemo4);
+
+        btnDemo5 = findViewById(R.id.buttonDemo5);
+        tvDemo5 = findViewById(R.id.textViewDemo5);
 
         btnDemo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,5 +182,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnDemo5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create the Listener to set the time
+                TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tvDemo5.setText("Time: " + hourOfDay + ":" + minute);
+                    }
+                };
+
+                TimePickerDialog myTimeDialog = new TimePickerDialog(MainActivity.this,
+                        myTimeListener, 20, 00, false);
+                myTimeDialog.show();
+
+                myTimeDialog.show();
+            }
+        });
     }
 }
