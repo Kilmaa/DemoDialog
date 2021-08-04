@@ -3,18 +3,23 @@ package sg.edu.rp.c346.id20022404.demodialog;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.time.Month;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
-    Button btnDemo1, btnDemo2, btnDemo3, btnEx3;
-    TextView tvDemo2, tvDemo3, tvEx3;
+    Button btnDemo1, btnDemo2, btnDemo3, btnEx3, btnDemo4;
+    TextView tvDemo2, tvDemo3, tvEx3, tvDemo4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +27,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnDemo1 = findViewById(R.id.buttonDemo1);
+
         btnDemo2 = findViewById(R.id.buttonDemo2);
         tvDemo2 = findViewById(R.id.textViewDemo2);
+
         btnDemo3 = findViewById(R.id.buttonDemo3);
         tvDemo3 = findViewById(R.id.textViewDemo3);
+
         btnEx3 = findViewById(R.id.buttonExercise3);
         tvEx3 = findViewById(R.id.textViewExercise3);
+
+        btnDemo4 = findViewById(R.id.buttonDemo4);
+        tvDemo4 = findViewById(R.id.textViewDemo4);
 
         btnDemo1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,5 +153,29 @@ public class MainActivity extends AppCompatActivity {
                 myDialog.show();
             }
         });
+
+        btnDemo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create the Listener to set the date
+                DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        tvDemo4.setText("Date: " + dayOfMonth + "/" + (monthOfYear+1) + "/" + year);
+                    }
+                };
+
+                // Create the Date Picker Dialog to show the current date when it first appears
+                Calendar now = Calendar.getInstance();
+                int year = now.get(Calendar.YEAR);
+                int month = now.get(Calendar.MONTH);
+                int day = now.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog myDateDialog = new DatePickerDialog(MainActivity.this,
+                        myDateListener, year, month, day);
+
+                myDateDialog.show();
+            }
+        });
+
     }
 }

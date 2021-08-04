@@ -5,4 +5,5 @@
     <string name="d3">DEMO 3 - TEXT INPUT DIALOG</string>
     <string name="num1">Enter Number 1:</string>
     <string name="num2">Enter Number 2:</string>
+    <string name="d4">DEMO 4 - DATEPICKER DIALOG</string>
 </resources>
