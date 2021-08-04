@@ -48,6 +48,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnDemo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(MainActivity.this);
 
+                myBuilder.setTitle("Demo 2-Buttons Dialog");
+                myBuilder.setMessage("Select one of the Buttons below.");
+                myBuilder.setCancelable(false);
+
+                myBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tvDemo2.setText("You have selected Positive.");
+
+                    }
+                });
+
+                myBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tvDemo2.setText("You have selected Negative.");
+
+                    }
+                });
+
+                myBuilder.setNeutralButton("CANCEL", null);
+
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
+            }
+        });
     }
 }
